@@ -7,7 +7,7 @@ const { create } = require('./models/user.model');
 require('dotenv').config();
 
 // carga de la DB
-require('./config/db');
+// require('./config/db');
 
 const app = express();
 const bot = new Telegraf(process.env.BOT_TOKEN);
@@ -20,17 +20,17 @@ app.post('/url_telegram', (req, res) => {
     res.send('Termina');
 });
 
-// MIDDLEWARE
-bot.use(async (ctx, next) => {
-    try{
-    await create(ctx.from)
-    } catch (err) {
-        console.log(err)
-        console.log('No se inserta el usuario')
-    } finally {
-        next();
-    }
-})
+// // MIDDLEWARE
+// bot.use(async (ctx, next) => {
+//     try{
+//     await create(ctx.from)
+//     } catch (err) {
+//         console.log(err)
+//         console.log('No se inserta el usuario')
+//     } finally {
+//         next();
+//     }
+// })
 
 /// Comandos -- requerimos la funcion desde cada fichero test- tiempo - donde
 bot.command('test',require('./commands/test'));
